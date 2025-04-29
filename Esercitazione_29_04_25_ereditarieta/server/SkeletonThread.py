@@ -2,16 +2,20 @@ from threading import Thread, current_thread
 
 class SkeletonThread(Thread):
     
-    def __init__(self,sock,msg,addr,thr_name,ref):
-        super().__init__(name=thr_name)
-        self.msg=msg
-        self.sock=sock
-        self.addr=addr
+    def __init__(self, conn, buf_size, thread_name, ref):
+        super.__init__(name=thread_name)
+        self.conn=conn
         self.ref=ref
-    
-    def run(self):
-        msg_split=self.msg.decode().split("-")
+        self.buf_size=buf_size
         
+    def run(self):
+        
+        data=self.conn.recv(self.buf_size)
+        message :str=data.decode()
+        
+        print(f"[{current_thread().name}] Received: {message}")
+        
+        msg_split=message.split("-")
         service=msg_split[0]
         article=msg_split[1]
         
@@ -24,7 +28,7 @@ class SkeletonThread(Thread):
             result=self.ref.deposita(article,id)
         else: print(f"[{current_thread().name}] Servizio {service} non riconosciuto")
         
-        res=str(result)
-        self.sock.sendto(res.encode(),self.addr)
-        print(f"[{current_thread().name}] Result sent")
+        response=str(result)
+        self.conn.send(response.encode())
         
+        self.conn.close()   
