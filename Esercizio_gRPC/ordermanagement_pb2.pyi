@@ -1,0 +1,26 @@
+from google.protobuf.internal import containers as _containers
+from google.protobuf import descriptor as _descriptor
+from google.protobuf import message as _message
+from typing import ClassVar as _ClassVar, Iterable as _Iterable, Optional as _Optional
+
+DESCRIPTOR: _descriptor.FileDescriptor
+
+class Order(_message.Message):
+    __slots__ = ("id", "items", "description", "price", "destination")
+    ID_FIELD_NUMBER: _ClassVar[int]
+    ITEMS_FIELD_NUMBER: _ClassVar[int]
+    DESCRIPTION_FIELD_NUMBER: _ClassVar[int]
+    PRICE_FIELD_NUMBER: _ClassVar[int]
+    DESTINATION_FIELD_NUMBER: _ClassVar[int]
+    id: str
+    items: _containers.RepeatedScalarFieldContainer[str]
+    description: str
+    price: float
+    destination: str
+    def __init__(self, id: _Optional[str] = ..., items: _Optional[_Iterable[str]] = ..., description: _Optional[str] = ..., price: _Optional[float] = ..., destination: _Optional[str] = ...) -> None: ...
+
+class StringMessage(_message.Message):
+    __slots__ = ("id",)
+    ID_FIELD_NUMBER: _ClassVar[int]
+    id: str
+    def __init__(self, id: _Optional[str] = ...) -> None: ...
