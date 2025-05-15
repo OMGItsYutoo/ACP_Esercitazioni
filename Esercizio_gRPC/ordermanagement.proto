@@ -3,8 +3,10 @@ package ecommerce;
 
 service OrderManagement{
 
-    rpc addOrder(Order) returns (StringMessage){}
+    rpc addOrder(Order) returns (StringMessage);
     rpc getOrder(StringMessage) returns (Order);
+    rpc searchOrders(StringMessage) returns (stream Order);
+    rpc processOrders(stream Order) returns (stream CombinedShipment);
 
 }
 
@@ -18,5 +20,14 @@ message Order{
 
 message StringMessage{
     string id=1;
+}
+
+message CombinedShipment{
+    string id=1;
+    string status=2;
+
+
+    // Un messaggio CombinedShipment può avere un numero qualsiasi di Order orders.
+    repeated Order orders = 3;
 }
 

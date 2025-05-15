@@ -24,7 +24,7 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x15ordermanagement.proto\x12\tecommerce\"[\n\x05Order\x12\n\n\x02id\x18\x01 \x01(\t\x12\r\n\x05items\x18\x02 \x03(\t\x12\x13\n\x0b\x64\x65scription\x18\x03 \x01(\t\x12\r\n\x05price\x18\x04 \x01(\x02\x12\x13\n\x0b\x64\x65stination\x18\x05 \x01(\t\"\x1b\n\rStringMessage\x12\n\n\x02id\x18\x01 \x01(\t2\x83\x01\n\x0fOrderManagement\x12\x38\n\x08\x61\x64\x64Order\x12\x10.ecommerce.Order\x1a\x18.ecommerce.StringMessage\"\x00\x12\x36\n\x08getOrder\x12\x18.ecommerce.StringMessage\x1a\x10.ecommerce.Orderb\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x15ordermanagement.proto\x12\tecommerce\"[\n\x05Order\x12\n\n\x02id\x18\x01 \x01(\t\x12\r\n\x05items\x18\x02 \x03(\t\x12\x13\n\x0b\x64\x65scription\x18\x03 \x01(\t\x12\r\n\x05price\x18\x04 \x01(\x02\x12\x13\n\x0b\x64\x65stination\x18\x05 \x01(\t\"\x1b\n\rStringMessage\x12\n\n\x02id\x18\x01 \x01(\t\"P\n\x10\x43ombinedShipment\x12\n\n\x02id\x18\x01 \x01(\t\x12\x0e\n\x06status\x18\x02 \x01(\t\x12 \n\x06orders\x18\x03 \x03(\x0b\x32\x10.ecommerce.Order2\x83\x02\n\x0fOrderManagement\x12\x36\n\x08\x61\x64\x64Order\x12\x10.ecommerce.Order\x1a\x18.ecommerce.StringMessage\x12\x36\n\x08getOrder\x12\x18.ecommerce.StringMessage\x1a\x10.ecommerce.Order\x12<\n\x0csearchOrders\x12\x18.ecommerce.StringMessage\x1a\x10.ecommerce.Order0\x01\x12\x42\n\rprocessOrders\x12\x10.ecommerce.Order\x1a\x1b.ecommerce.CombinedShipment(\x01\x30\x01\x62\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -35,6 +35,8 @@ if not _descriptor._USE_C_DESCRIPTORS:
   _globals['_ORDER']._serialized_end=127
   _globals['_STRINGMESSAGE']._serialized_start=129
   _globals['_STRINGMESSAGE']._serialized_end=156
-  _globals['_ORDERMANAGEMENT']._serialized_start=159
-  _globals['_ORDERMANAGEMENT']._serialized_end=290
+  _globals['_COMBINEDSHIPMENT']._serialized_start=158
+  _globals['_COMBINEDSHIPMENT']._serialized_end=238
+  _globals['_ORDERMANAGEMENT']._serialized_start=241
+  _globals['_ORDERMANAGEMENT']._serialized_end=500
 # @@protoc_insertion_point(module_scope)

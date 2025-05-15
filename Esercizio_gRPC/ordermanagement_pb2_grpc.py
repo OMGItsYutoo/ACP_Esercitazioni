@@ -44,6 +44,16 @@ class OrderManagementStub(object):
                 request_serializer=ordermanagement__pb2.StringMessage.SerializeToString,
                 response_deserializer=ordermanagement__pb2.Order.FromString,
                 _registered_method=True)
+        self.searchOrders = channel.unary_stream(
+                '/ecommerce.OrderManagement/searchOrders',
+                request_serializer=ordermanagement__pb2.StringMessage.SerializeToString,
+                response_deserializer=ordermanagement__pb2.Order.FromString,
+                _registered_method=True)
+        self.processOrders = channel.stream_stream(
+                '/ecommerce.OrderManagement/processOrders',
+                request_serializer=ordermanagement__pb2.Order.SerializeToString,
+                response_deserializer=ordermanagement__pb2.CombinedShipment.FromString,
+                _registered_method=True)
 
 
 class OrderManagementServicer(object):
@@ -61,6 +71,18 @@ class OrderManagementServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def searchOrders(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def processOrders(self, request_iterator, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_OrderManagementServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -73,6 +95,16 @@ def add_OrderManagementServicer_to_server(servicer, server):
                     servicer.getOrder,
                     request_deserializer=ordermanagement__pb2.StringMessage.FromString,
                     response_serializer=ordermanagement__pb2.Order.SerializeToString,
+            ),
+            'searchOrders': grpc.unary_stream_rpc_method_handler(
+                    servicer.searchOrders,
+                    request_deserializer=ordermanagement__pb2.StringMessage.FromString,
+                    response_serializer=ordermanagement__pb2.Order.SerializeToString,
+            ),
+            'processOrders': grpc.stream_stream_rpc_method_handler(
+                    servicer.processOrders,
+                    request_deserializer=ordermanagement__pb2.Order.FromString,
+                    response_serializer=ordermanagement__pb2.CombinedShipment.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -129,6 +161,60 @@ class OrderManagement(object):
             '/ecommerce.OrderManagement/getOrder',
             ordermanagement__pb2.StringMessage.SerializeToString,
             ordermanagement__pb2.Order.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def searchOrders(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_stream(
+            request,
+            target,
+            '/ecommerce.OrderManagement/searchOrders',
+            ordermanagement__pb2.StringMessage.SerializeToString,
+            ordermanagement__pb2.Order.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def processOrders(request_iterator,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.stream_stream(
+            request_iterator,
+            target,
+            '/ecommerce.OrderManagement/processOrders',
+            ordermanagement__pb2.Order.SerializeToString,
+            ordermanagement__pb2.CombinedShipment.FromString,
             options,
             channel_credentials,
             insecure,

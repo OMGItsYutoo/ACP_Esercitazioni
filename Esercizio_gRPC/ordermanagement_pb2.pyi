@@ -1,7 +1,7 @@
 from google.protobuf.internal import containers as _containers
 from google.protobuf import descriptor as _descriptor
 from google.protobuf import message as _message
-from typing import ClassVar as _ClassVar, Iterable as _Iterable, Optional as _Optional
+from typing import ClassVar as _ClassVar, Iterable as _Iterable, Mapping as _Mapping, Optional as _Optional, Union as _Union
 
 DESCRIPTOR: _descriptor.FileDescriptor
 
@@ -24,3 +24,13 @@ class StringMessage(_message.Message):
     ID_FIELD_NUMBER: _ClassVar[int]
     id: str
     def __init__(self, id: _Optional[str] = ...) -> None: ...
+
+class CombinedShipment(_message.Message):
+    __slots__ = ("id", "status", "orders")
+    ID_FIELD_NUMBER: _ClassVar[int]
+    STATUS_FIELD_NUMBER: _ClassVar[int]
+    ORDERS_FIELD_NUMBER: _ClassVar[int]
+    id: str
+    status: str
+    orders: _containers.RepeatedCompositeFieldContainer[Order]
+    def __init__(self, id: _Optional[str] = ..., status: _Optional[str] = ..., orders: _Optional[_Iterable[_Union[Order, _Mapping]]] = ...) -> None: ...
