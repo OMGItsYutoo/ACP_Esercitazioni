@@ -1,0 +1,22 @@
+syntax="proto3";
+
+package magazzino;
+
+service Service{
+    rpc preleva(Empty) returns (Item);
+    rpc deposita(Item) returns (StringMessage);
+    rpc svuota(Empty) returns (stream Item);
+}
+
+message StringMessage{
+    string deposited_string=1;
+}
+
+message Item{
+    int64 id_articolo=1;
+    string product=2;
+}
+
+message Empty{}
+
+//python -m grpc_tools.protoc -I. --python_out=. --grpc_python_out=. ./service.proto 

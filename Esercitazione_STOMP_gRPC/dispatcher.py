@@ -3,17 +3,37 @@ import sys
 import time
 import grpc
 from multiprocess import Process
+import service_pb2_grpc, service_pb2
 
 def proc_req(port, mess):
-
-    request = mess.split('-')[0]
+    msg_split=mess.split('-')
+    request = msg_split[0]
 
     # Create connection
     conn = stomp.Connection([('127.0.0.1', 61613)])
 
     # Connect and subscribe to the queue 'request'
     conn.connect(wait=True)
-
+    
+    channel=grpc.insecure_channel('localhost:' + str(port))
+    stub=service_pb2_grpc.ServiceStub(channel)
+    
+    if request=="deposita":
+        id=int(msg_split[1])
+        prod=msg_split[2]
+        result=stub.deposita(service_pb2.Item(id_articolo=id,product=prod))
+        print("[DISPATCHER] Response:", result.deposited_string)
+        conn.send("/queue/response",result.deposited_string)
+    elif request=="preleva":
+        result=stub.preleva(service_pb2.Empty())
+        print("[DISPATCHER] Response:", result)
+        conn.send("/queue/response",str(result.id_articolo)+'-'+result.product)
+    else:
+        results=stub.svuota(service_pb2.Empty())
+        
+        for result in results:
+            print("[DISPATCHER] Response:", result)
+            conn.send("/queue/response",str(result.id_articolo)+'-'+result.product)
 
 # Listener
 class MyListener(stomp.ConnectionListener):
