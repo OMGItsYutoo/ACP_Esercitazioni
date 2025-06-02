@@ -15,4 +15,3 @@ EOF
 
 echo "✅ Database '$DB_NAME' creato con le collezioni 'smartphone' e 'laptop'."
 
-#mongo Magazzino_TCP_delega --eval "db.dropDatabase()" to drop the DB

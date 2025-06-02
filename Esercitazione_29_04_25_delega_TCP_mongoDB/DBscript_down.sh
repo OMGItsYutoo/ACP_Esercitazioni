@@ -1,0 +1,1 @@
+mongosh Magazzino_TCP_delega --eval "db.dropDatabase()"

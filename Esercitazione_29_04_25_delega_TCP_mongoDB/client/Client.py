@@ -3,8 +3,8 @@ from client.MagazzinoProxy import MagazzinoProxy
 import time, random
 import argparse
 
-NUM_THREADS = 20
-NUM_REQS_THREADS = 30
+NUM_THREADS = 5
+NUM_REQS_THREADS = 5
 IP = 'localhost'
 BUF_SIZE=1024
 
