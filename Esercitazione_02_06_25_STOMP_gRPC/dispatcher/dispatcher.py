@@ -9,6 +9,8 @@ PORT=61613
 
 def proc_fun(port, msg:str):
     msg_split=msg.split('-')
+    
+    #a connection for every process, more robust and scalable
     conn=stomp.Connection([("localhost",PORT)])
     conn.connect(wait=True)
     
