@@ -52,6 +52,5 @@ def main():
     for _ in range(5):
         th.join()
         
-        
 if __name__=="__main__": 
     main()

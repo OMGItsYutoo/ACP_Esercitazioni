@@ -1,5 +1,5 @@
 import grpc
-from proto import statistics_pb2, statistics_pb2_grpc
+from grpc_package.proto import statistics_pb2, statistics_pb2_grpc
 from pymongo import MongoClient
 from concurrent import futures
 import time
