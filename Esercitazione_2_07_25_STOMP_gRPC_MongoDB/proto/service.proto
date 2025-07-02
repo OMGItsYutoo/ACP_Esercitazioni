@@ -1,0 +1,23 @@
+//python3 -m grpc_tools.protoc --python_out=proto/ --grpc_python_out=proto/ -I=proto/ service.proto
+syntax="proto3";
+
+package service;
+
+service Service{
+    rpc deposita(Item) returns (ResponseString);
+    rpc preleva(Empty) returns (Item);
+    rpc svuota(Empty) returns (stream Item);
+}
+
+message Item{
+    int64 id=1;
+    string product=2;
+}
+
+message Empty{
+
+}
+
+message ResponseString{
+    string response=1;
+}
