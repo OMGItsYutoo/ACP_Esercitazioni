@@ -4,9 +4,7 @@ from threading import Lock, Condition
 #proxy-skeleton per ereditarietà 
 class MagazzinoImpl(MagazzinoSkeleton):
     def __init__(self, ip, port, buf_size, queue_size):
-        self.ip=ip
-        self.port=port
-        self.buf_size=buf_size
+        super().__init__(ip, port, buf_size)
         self.queue_size=queue_size
         
         #implementazione con lista
