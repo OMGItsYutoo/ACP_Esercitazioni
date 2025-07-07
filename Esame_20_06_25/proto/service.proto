@@ -1,0 +1,25 @@
+//python3 -m grpc_tools.protoc --python_out=proto/ --grpc_python_out=proto/ -I=proto/ service.proto
+syntax="proto3";
+
+package service;
+
+service Service{
+    rpc stream_temp(stream Data) returns (Message);
+    rpc get_average(Empty) returns (Average);
+}
+
+message Data{
+    int64 value=1;
+}
+
+message Empty{
+
+}
+
+message Average{
+    float mean=1;
+}
+
+message Message{
+    string stringmess=1;
+}
