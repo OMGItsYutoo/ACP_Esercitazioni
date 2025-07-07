@@ -10,5 +10,5 @@ class MyListener(stomp.ConnectionListener):
         print(f"[Dashboard] - Received {frame.body}")
         
         with open("./dashboard/alerts.txt", "a") as f:
-            f.write(str(frame.body))
+            f.write(str(frame.body)+'\n')
         
