@@ -25,7 +25,7 @@ class CheckerImpl(service_pb2_grpc.ServiceServicer):
                 conn=stomp.Connection([('localhost',61613)])
                 conn.connect(wait=True)
                 
-                conn.send("/topic/alert",str(data))
+                conn.send("/topic/alert",str(data)) #conn.send("/topic/alert",data) gives Exception because this function calculates len, and it can be done on int
                 
         if alert:
             return service_pb2.Message(stringmess="ALERT")
