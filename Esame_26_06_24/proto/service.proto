@@ -1,0 +1,20 @@
+syntax="proto3";
+
+package service;
+
+service Service{
+    rpc buy(Empty) returns (Item);
+    rpc sell(Item) returns (Ack);
+}
+
+message Empty{
+
+}
+
+message Item{
+    int64 serial_number=1;
+}
+
+message Ack{
+    bool ack=1;
+}
