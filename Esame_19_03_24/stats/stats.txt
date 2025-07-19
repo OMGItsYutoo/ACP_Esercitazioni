@@ -1,0 +1,6 @@
+Negramaro: 7
+Jovanotti: 6
+Ligabue: 7
+Jovanotti: 10
+Negramaro: 6
+Ligabue: 4
