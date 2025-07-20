@@ -1,0 +1,20 @@
+// protoc --java_out=proto/ --grpc-java_out=proto/ --plugin=protoc-gen-grpc-java=/home/aldo-manzo/Applications/protoc-gen-grpc-java-1.8.0-linux-x86_64.exe -I=proto/ magazzino.proto
+// python3 -m grpc_tools.protoc --python_out=proto/ --grpc_python_out=proto/ -I=proto/ magazzino.proto
+syntax="proto3";
+
+option java_multiple_files=true;
+
+package dispatcher;
+
+service Magazzino{
+    rpc deposita(Item) returns (Empty);
+    rpc preleva(Empty) returns (Item);
+}
+
+message Empty{
+
+}
+
+message Item{
+    int64 value=1;
+}
