@@ -33,6 +33,8 @@ public class CodaWrapperSynch extends CodaWrapper{
                 }
             }
             item=coda.preleva();
+            
+            //If you use notify(), you might wake up a thread waiting on the wrong condition:
             coda.notifyAll();
         }
         return item;
